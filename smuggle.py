@@ -1,8 +1,7 @@
-from webrequest import WebRequest
+from webrequest import WebRequest,ColorPallete,RN,PREFIX,user_agents,options
 import socket
 import ssl
 import requests
-options={'Transfer-Encoding':'chunked','Content-Type':'application/x-www-form-urlencoded'}#,'User-Agent':'<img src=x.lol onerror=alert(5)>'}
 #host = 'pixabay.com'
 ngrok_url = '93a3-2603-300a-1702-2b00-104b-4592-7d34-860.ngrok.io'
 #port=443

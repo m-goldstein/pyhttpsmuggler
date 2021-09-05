@@ -4,8 +4,6 @@ import requests
 ###############################################################################
 ################# Utility class definitions and scoped constants ##############
 ###############################################################################
-portswigger_pw = '445$W3=dH/5rC2C39\i5*#X&?88#*Bx6'
-portswigger_uname = 'pwnaday'
 class ColorPallete:
     def __init__(self,color='reset'):
         self.color_modes = {\
@@ -34,6 +32,12 @@ RN = '\r\n'
 PREFIX = '0\r\n\r\n'
 TRAILER = '-'*80
 padding = ' '
+
+options = {\
+        'Transfer-Encoding':'chunked',\
+        'Content-Type':'application/x-www-form-urlencoded'\
+         }
+
 user_agents = {\
     'Mozilla':'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0',\
     'Chrome':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36',\
