@@ -7,6 +7,6 @@ Implemented a WebRequest class to generate arbitrary web requests with malformed
 # Todo:
 ## pyhttpsuggler-cli
 ### 1
-Create a CLI interface for sending arbitrary requests from the command line rather than using driver scripts like smuggle.py. Maybe I will implement this in C++ or scapy depending on the advantages each choice offers...
+Improve  CLI for sending arbitrary requests from the command line rather than using driver scripts like smuggle.py. Maybe I will implement this in C++ or scapy depending on the advantages each choice offers...
 ### 2
 Add fuzzing engine script to automate fuzzing websites for various HTTP request desync attacks

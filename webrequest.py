@@ -29,7 +29,7 @@ class ColorPallete:
         print(self.color_modes['reset'])
 
 RN = '\r\n'
-PREFIX = '0\r\n\r\n'
+PREFIX = '0'+RN
 TRAILER = '-'*80
 padding = ' '
 
