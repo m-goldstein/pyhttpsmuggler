@@ -17,6 +17,10 @@ This project is free to use and modify. The three things I ask of those interest
 - The request body field is colored such that the purple portion denotes the substring of the request covered by the content-length field. The cyan portion denotes the part of the request to be smuggled. 
 ## Examples
 *Note: passing arguments denoted by pairs of quotations (",') is necessary for request fields which may contain spaces or special charachters*
+### Vanilla GET Requests
+```python
+./pysmuggle --host stallman.org --method GET --body-data "0" --body-length 3 --request-headers "Transfer-Encoding: chunked,Content-Type:text/plain" --smuggled-body-fields ""
+```
 ### CL.TE Vulnerability
 
 ```python
