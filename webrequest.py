@@ -80,19 +80,22 @@ class WebRequest:
 
         self.cp = ColorPallete()
     def make_custom_body(self, length=0,data=''):
-        self.body = data
-        self.headers['Content-Length'] = str(length)
-        if self.debug:
-            first = self.body[:length] if len(self.body) > int(self.headers['Content-Length']) else self.body
-            second = self.body[length:] if len(self.body) > int(self.headers['Content-Length']) else ''
-            print('Body:\n',end='')
-            self.cp.set_color('purple')
-            print('{}'.format(first),end='')
-            self.cp.set_color('reset')
-            self.cp.set_color('cyan')
-            print('{}'.format(second),end='')
-            self.cp.set_color('reset')
-            print('\n{}'.format(TRAILER))
+        try:
+            self.body = data
+            self.headers['Content-Length'] = str(length)
+            if self.debug:
+                first = self.body[:length] if len(self.body) > int(self.headers['Content-Length']) else self.body
+                second = self.body[length:] if len(self.body) > int(self.headers['Content-Length']) else ''
+                print('Body:\n',end='')
+                self.cp.set_color('purple')
+                print('{}'.format(first),end='')
+                self.cp.set_color('reset')
+                self.cp.set_color('cyan')
+                print('{}'.format(second),end='')
+                self.cp.set_color('reset')
+                print('\n{}'.format(TRAILER))
+        except Exception as e:
+            cp.log(color='red',msg='[make_custom_body] Exception: {}'.format(e))
 
     def make_body(self, data=PREFIX, options=[],use_body_len=True,length=len(PREFIX),use_custom=False,custom_data=''):
         length = int(length)

@@ -6,7 +6,10 @@ from webrequest import WebRequest,ColorPallete,RN,PREFIX,user_agents,options
 import socket
 import ssl
 import requests
-
+####################### Utility Variables and data structures ##################
+yes_list = ['True','yes','true','1',1,'on','one','all']
+no_list =  ['False','no','false','0',0,'off','none','zero']
+###############################################################################
 if __name__ == '__main__':
     cp = ColorPallete()
     request_headers = {}
@@ -37,7 +40,7 @@ if __name__ == '__main__':
         if k == 'debug' and v == None:
             args.debug = True
         elif k == 'debug' and v != None:
-            args.debug = False if v in ['False','false','0','off','none','no'] else v in ['True','true','1','yes','on','all'] 
+            args.debug = False if v in no_list else v in yes_list
         if k == 'endpoint' and v == None:
             args.endpoint = '/'
         if k == 'method' and v == None:
@@ -73,17 +76,24 @@ if __name__ == '__main__':
         if k == 'custom_body_payload' and v == None:
             use_custom_body = False
         elif k == 'custom_body_payload' and v != None:
-            use_custom_body = True
-            fields = v.split(';')
-            for e in fields:
-                if 'length=' in e:
-                    custom_body_length = int(e[e.find('=')+1:])
-                elif e.isnumeric():
-                    custom_body_length = int(e)
-                if 'body=' in e:
-                    custom_body = e[e.find('=')+1:]
-                elif 'body=' not in e and len(fields) > 1:
-                    custom_body = fields[1]
+            try:
+                use_custom_body = True
+                fields = v.split(';')
+                for e in fields:
+                    if 'length=' in e:
+                        custom_body_length = int(e[e.find('=')+1:])
+                    elif e.isnumeric():
+                        custom_body_length = int(e)
+                    if 'body=' in e:
+                        custom_body = e[e.find('=')+1:]
+                    elif 'body=' not in e and len(fields) > 1:
+                        custom_body = fields[1]
+            except Exception as e:
+                cp.log(color='red',msg='[custom_body_payload] Exception was thrown...Did you specify the length and body?\ne.g.\
+                    --custom-body-payload "length=3;body="0\\r\\n\\r\\nPOST / HTTP/1.1\\r\\n\\r\\n"\
+                    or --custom-body-payload "3;0\\r\\n\\r\\nPOST / HTTP/1.1\\r\\n\\r\\n')
+                cp.log(color='red',msg='[custom_body_payload] Exceiption: {}'.format(e))
+
         if k == 'prefix' and v == None:
             args.prefix = PREFIX
         elif k == 'prefix' and v != None:
@@ -91,7 +101,7 @@ if __name__ == '__main__':
         if k == 'use_ssl' and v == None:
             args.use_ssl = True
         elif k == 'use_ssl' and v != None:
-            args.use_ssl = False if v in ['False','false','no','off','0'] else v in ['True','true','yes','1','on']
+            args.use_ssl = False if v in no_list else v in yes_list
     if args.debug:
         cp.log(color='yellow',msg='Got arguments: ')
         for k,v in args._get_kwargs():
@@ -113,7 +123,13 @@ if __name__ == '__main__':
                         special_formatting=args.special_formatting)
 
         if use_custom_body:
-            wr.make_custom_body(length=custom_body_length, data=custom_body)
+            try:
+                wr.make_custom_body(length=custom_body_length, data=custom_body)
+            except Exception as e:
+                cp.log(color='red',msg='[custom_body_payload] Exception was thrown...')
+                cp.log(color='red',msg='[custom_body_payload] Exceiption: {}'.format(e))
+                cp.log(color='yellow',msg='Did you specify the length and body?')
+                cp.log(color='purple', msg='e.g.--custom-body-payload "length=3;body="0\\r\\n\\r\\nPOST / HTTP/1.1\\r\\n\\r\\n"\nor --custom-body-payload "3;0\\r\\n\\r\\nPOST / HTTP/1.1\\r\\n\\r\\n"')
         else:
             wr.make_body(data=(args.prefix+args.body_data),options=args.smuggled_body_fields,use_body_len=use_body_len,length=args.body_length)
 
