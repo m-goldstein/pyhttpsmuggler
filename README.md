@@ -20,10 +20,9 @@ Scripts related to web/request smuggling & general web hacking.
 ### 9/5/2021
 - Implemented a CLI using argparse and the WebRequest class. This introduces robustness and more opportunities for automation since worker threads can easily invoke specially-crafted requests by passing arguments over the CLI under the control of a parent thread or list of exploits to try.
 - Updated README with example usage and development logs
-- 
 # Todo:
 ## pyhttpsuggler-cli
 1.[X] Improve  CLI for sending arbitrary requests from the command line rather than using driver scripts like smuggle.py. Maybe I will implement this in C++ or scapy depending on the advantages each choice offers...
-2.[ ] Add fuzzing engine script to automate fuzzing websites for various HTTP request desync attacks
+2.[ ] Add fuzzing engine script to automate fuzzing websites for various HTTP request desync attacks\n
 3.[ ] Create a text file with various desync attacks to test on an target webserver and a parser to turn the entries in the file into different requests.
 4.[ ] Cleanup the chunk of if/elif/else login in pysmuggler.py:34-94
