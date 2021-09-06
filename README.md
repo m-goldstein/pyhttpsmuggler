@@ -1,11 +1,11 @@
 # pyhttpsmuggler
-`
+```python
 usage: ./pysmuggle [-h | --help] [--host [HOST]] [--port [PORT]] [--ngrok [NGROK]] [--method [METHOD]] 
 [--endpoint [ENDPOINT]] [--http-version [HTTP_VERSION]] [--request-headers [REQUEST_HEADERS]] [--debug [DEBUG]]
 [--special-formatting [SPECIAL_FORMATTING]] [--body-data [BODY_DATA]] [--body-length [BODY_LENGTH]] 
 [--smuggled-body-fields [SMUGGLED_BODY_FIELDS]] [--use-ssl [USE_SSL]]
 [--custom-body-payload [CUSTOM_BODY_PAYLOAD]] [--prefix [PREFIX]]
-`
+```
 
 Scripts related to web/request smuggling & general web hacking.
 *This project is free to use and modify. The three things I ask of those interested in using/modifying/distributing this project is:
