@@ -23,6 +23,6 @@ Scripts related to web/request smuggling & general web hacking.
 # Todo:
 ## pyhttpsuggler-cli
 1. [X] Improve  CLI for sending arbitrary requests from the command line rather than using driver scripts like smuggle.py. Maybe I will implement this in C++ or scapy depending on the advantages each choice offers...
-2. [ ] Add fuzzing engine script to automate fuzzing websites for various HTTP request desync attacks\n
+2. [ ] Add fuzzing engine script to automate fuzzing websites for various HTTP request desync attacks
 3. [ ] Create a text file with various desync attacks to test on an target webserver and a parser to turn the entries in the file into different requests.
 4. [ ] Cleanup the chunk of if/elif/else login in pysmuggler.py:34-94
