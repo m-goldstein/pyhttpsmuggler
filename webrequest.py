@@ -29,7 +29,7 @@ class ColorPallete:
         print(self.color_modes['reset'])
 
 RN = '\r\n'
-PREFIX = '0'+RN
+PREFIX = ''+RN*0
 TRAILER = '-'*80
 padding = ' '
 
@@ -95,12 +95,13 @@ class WebRequest:
             print('\n{}'.format(TRAILER))
 
     def make_body(self, data=PREFIX, options=[],use_body_len=True,length=len(PREFIX),use_custom=False,custom_data=''):
+        length = int(length)
         if use_custom:
             self.make_custom_body(length=length,data=custom_data)
             return
-        self.body = data
+        self.body = data + RN if not data.endswith(RN) else data
         for opt in options:
-            self.body += opt + RN
+            self.body += opt + RN if not opt.endswith(RN) else opt
         self.headers['Content-Length'] = str(len(self.body)) if use_body_len else str(length)
         if self.debug:
             first = self.body[:length] if len(self.body) > int(self.headers['Content-Length']) else self.body
@@ -122,6 +123,7 @@ class WebRequest:
             self.request_string += RN
         self.request_string += RN
         self.request_string += self.body
+
         if self.debug:
             print('Request:\n{}\n{}'.format(self.request_string,TRAILER))
         return self.request_string

@@ -10,7 +10,7 @@ import requests
 if __name__ == '__main__':
     cp = ColorPallete()
     request_headers = {}
-    parser = argparse.ArgumentParser(description="Send (malformed) http requests to a host.\n\nExample: python3 pysmuggle.py --host stallman.org --request-headers \"Transfer-Encoding:chunked,Content-Type:text/html\" --smuggled-body-fields \"\" --body-data \"\" --port 443 --debug 1")
+    parser = argparse.ArgumentParser(description="Send (malformed) http requests to a host.")
     parser.add_argument('--host', type=str, nargs='?',help='target host')
     parser.add_argument('--port', type=int, nargs='?',help='target port on host')
     parser.add_argument('--ngrok', type=str, nargs='?',help='ngrok url for forward/redirected/smuggled requests')
@@ -111,12 +111,14 @@ if __name__ == '__main__':
                         prefix=args.prefix,
                         debug=args.debug,
                         special_formatting=args.special_formatting)
+
         if use_custom_body:
             wr.make_custom_body(length=custom_body_length, data=custom_body)
         else:
             wr.make_body(data=(args.prefix+args.body_data),options=args.smuggled_body_fields,use_body_len=use_body_len,length=args.body_length)
-        msg = wr.make_request_msg()
+
         wr.connect(use_ssl=args.use_ssl)
+        msg = wr.make_request_msg()
         wr.send(msg)
         wr.recv()
     except Exception as e:
