@@ -8,10 +8,10 @@ usage: ./pysmuggle [-h | --help] [--host [HOST]] [--port [PORT]] [--ngrok [NGROK
 ```
 
 Scripts related to web/request smuggling & general web hacking.
-*This project is free to use and modify. The three things I ask of those interested in using/modifying/distributing this project is:
+This project is free to use and modify. The three things I ask of those interested in using/modifying/distributing this project is:
 1. Users have the explicit consent from target host servers' maintainers to test for vulnerabilities-- as a successful exploit may disrupt web-services and/or leak sensitive user-data.
 2. Any derivative project using any component from this project upholds the open-source philosophy with others in the research & development community.
-3. Lastly, I ask (well, it's more of a statement really) that I assume no liability or responsibility for any & all potential consequences of others'actions when using this script on a live server instance.*
+3. Lastly, I ask (well, it's more of a statement really) that I assume no liability or responsibility for any & all potential consequences of others'actions when using this script on a live server instance.
 ## General Information
 - The keys for the argument list are colored yellow. The values are purple.
 - The request body field is colored such that the purple portion denotes the substring of the request covered by the content-length field. The cyan portion denotes the part of the request to be smuggled. 
